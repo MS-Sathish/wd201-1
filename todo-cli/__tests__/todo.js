@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 const db = require("../models");
 
-const getJSDate = (days) => {
+const gd = (days) => {
   if (!Number.isInteger(days)) {
     throw new Error("Need to pass an integer as days");
   }
@@ -18,7 +18,7 @@ describe("Test list of items", function () {
   test("Add overdue item", async () => {
     const todo = await db.Todo.addTask({
       title: "This is a sample item",
-      dueDate: getJSDate(-2),
+      dueDate: gd(-2),
       completed: false,
     });
     const items = await db.Todo.overdue();
@@ -29,7 +29,7 @@ describe("Test list of items", function () {
     const dueTodayItems = await db.Todo.dueToday();
     const todo = await db.Todo.addTask({
       title: "This is a sample item",
-      dueDate: getJSDate(0),
+      dueDate: gd(0),
       completed: false,
     });
     const items = await db.Todo.dueToday();
@@ -40,7 +40,7 @@ describe("Test list of items", function () {
     const dueLaterItems = await db.Todo.dueLater();
     const todo = await db.Todo.addTask({
       title: "This is a sample item",
-      dueDate: getJSDate(2),
+      dueDate: gd(2),
       completed: false,
     });
     const items = await db.Todo.dueLater();
