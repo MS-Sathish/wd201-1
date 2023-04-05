@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 
 
 app.get("/", async (request, response) => {
-  const allTodoItems = await Todo.getTodoItems();
+  const allTodoItems = await Todo.gettodoitems();
   if (request.accepts("html")) {
     response.render("index", { allTodoItems });
   } else {
